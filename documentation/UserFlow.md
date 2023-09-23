@@ -169,8 +169,6 @@ curl -X GET http://your-api-url/user/1 -H "Content-Type: application/json" -d '{
 # Update a user's details (admin authentication required)
 curl -X PUT http://your-api-url/user/1 -H "Content-Type: application/json" -d '{
   "username": "updated_user_username",
-
-
   "email": "updated_user@example.com",
   "password": "new_user_password"
 }'
