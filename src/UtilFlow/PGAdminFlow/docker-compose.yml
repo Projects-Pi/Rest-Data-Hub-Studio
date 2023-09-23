@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  pgadminflow:
+    image: dpage/pgadmin4:latest
+    container_name: ${PGADMIN_CONTAINER_NAME}
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - "5999:80"
+    networks:
+      - rest-dataflow-studio-network
+
+networks:
+  rest-dataflow-studio-network:
+    driver: bridge
+    name: rest-dataflow-studio-network 
+
+volumes:
+  rest-dataflow-studio-authflow-pgadminflow-data:
+    driver: local

@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+  genevariantflow:
+    build:
+      context: .
+    restart: always
+    image: ${GENEVARIANT_IMAGE_NAME}
+    container_name: ${GENEVARIANT_CONTAINER_NAME}
+    ports:
+      - '6005:4005'
+    networks:
+      - rest-dataflow-studio-network
+    volumes:
+      - rest-dataflow-studio-dataflow-genevariant-data:/rest-dataflow-studio-dataflow-genevariant-data/
+      - /app
+
+networks:
+  rest-dataflow-studio-network:
+    driver: bridge
+    name: rest-dataflow-studio-network 
+
+volumes:
+  rest-dataflow-studio-dataflow-genevariant-data:
+    driver: local

@@ -1,0 +1,9 @@
+bcrypt
+Flask
+Flask-Bcrypt
+Flask-SQLAlchemy
+importlib-metadata
+SQLAlchemy
+python-decouple
+psycopg2-binary
+python-dotenv

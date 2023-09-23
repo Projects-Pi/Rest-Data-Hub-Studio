@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+  adminuserflow:
+    build:
+      context: .
+    restart: always
+    image: ${ADMIN_IMAGE_NAME}
+    container_name: ${ADMIN_CONTAINER_NAME}
+    ports:
+      - '6001:4001'
+    networks:
+      - rest-dataflow-studio-network
+    volumes:
+      - rest-dataflow-studio-authflow-adminuserflow-data:/rest-dataflow-studio-authflow-adminuserflow-data/
+      - /app
+
+networks:
+  rest-dataflow-studio-network:
+    driver: bridge
+    name: rest-dataflow-studio-network 
+
+volumes:
+  rest-dataflow-studio-authflow-adminuserflow-data:
+    driver: local
