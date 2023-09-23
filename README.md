@@ -1,6 +1,3 @@
-Here's the provided content formatted in GitHub Markdown with various styling elements for an impressive document:
-
-
 # REST DataHub Studio Control (rdsctl) Documentation
 
 ## Table of Contents
@@ -222,5 +219,3 @@ By using or contributing to this software, you agree to abide by the terms of th
 
 For more details, see the LICENSE file in this repository.
 ```
-
-This Markdown document includes headings, subheadings, code blocks, lists, and links to create a well-structured and visually appealing GitHub Markdown document.
