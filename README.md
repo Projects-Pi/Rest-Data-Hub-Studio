@@ -78,33 +78,18 @@ graph TD;
     GeneData[Gene Variant Data]
     Queries[Gene Variant Queries]
     DataProcessing[Data Processing]
-  end
-
-  subgraph Database1
-    style dbStyle fill:#f9f,stroke:#333,stroke-width:2px;
-    UserProfiles[User Profiles]
-    UserActions[User Actions]
-    UserPrefs[User Preferences]
-  end
-
-  subgraph Database2
-    style dbStyle fill:#f9f,stroke:#333,stroke-width:2px;
-    AdminRecords[Admin Records]
-    AdminActions[Admin Actions]
-  end
-
-  subgraph Database3
-    style dbStyle fill:#f9f,stroke:#333,stroke-width:2px;
-    GeneVariantData[Gene Variant Data]
-    DataHistory[Data History]
-    GeneRecords[Gene Records]
+    subgraph Databases
+      style dbStyle fill:#f9f,stroke:#333,stroke-width:2px;
+      GeneVariantData[Gene Variant Data]
+      DataHistory[Data History]
+      GeneRecords[Gene Records]
+    end
   end
 
   UI --> RESTAPI
   RESTAPI --> Users
   RESTAPI --> AdminOps
   RESTAPI --> GeneData
-  Users --> UserProfiles
   Users --> Auth
   Users --> Authz
   Users --> Profile
@@ -115,14 +100,7 @@ graph TD;
   AdminOps --> DataMaintenance
   GeneData --> Queries
   GeneData --> DataProcessing
-  UserProfiles --> Database1
-  UserActions --> Database1
-  UserPrefs --> Database1
-  AdminRecords --> Database2
-  AdminActions --> Database2
-  GeneVariantData --> Database3
-  DataHistory --> Database3
-  GeneRecords --> Database3
+
 ```
 
 ## 2. Prerequisites
