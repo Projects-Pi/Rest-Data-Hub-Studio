@@ -62,6 +62,7 @@ graph TD;
     Authz[Authorization]
     Profile[User Profile]
     Actions[User Actions]
+    Notifications[Notifications]
   end
 
   subgraph AdminService
@@ -71,6 +72,7 @@ graph TD;
     UserMgmt[User Management]
     Reporting[Reporting]
     DataMaintenance[Data Maintenance]
+    Notifications[Notifications]
   end
 
   subgraph GeneVariantService
@@ -84,6 +86,7 @@ graph TD;
       DataHistory[Data History]
       GeneRecords[Gene Records]
     end
+    Notifications[Notifications]
   end
 
   UI --> RESTAPI
@@ -94,12 +97,15 @@ graph TD;
   Users --> Authz
   Users --> Profile
   Users --> Actions
+  Users --> Notifications
   AdminOps --> AuthAdmin
   AdminOps --> UserMgmt
   AdminOps --> Reporting
   AdminOps --> DataMaintenance
+  AdminOps --> Notifications
   GeneData --> Queries
   GeneData --> DataProcessing
+  GeneData --> Notifications
 
 ```
 
