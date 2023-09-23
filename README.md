@@ -41,43 +41,88 @@ You can click on each link to access the corresponding documentation.
 Feel free to explore the documentation to learn more about this project.
 
 ##REST DataHub Studio Architecture 
+```mermaid
+graph TD;
 
-+-------------------+
-|     Frontend      |
-|    User Interface |
-| <--- Web UI --->  |
-+-------------------+
-         |
-         |
-         v
-+-------------------+
-|     API Gateway   |
-|                   |
-| <--- REST API --- |
-+-------------------+
-         |
-         |
-         v
-+-------------------+    +-------------------+    +-------------------+
-|   User Service    |    |   Admin Service   |    |  Gene Variant Service |
-|                   |    |                   |    |                       |
-| - Manages Users   |    | - Admin Operations|    | - Gene Variant Data   |
-| - Authentication  |    | - Authentication  |    | - Gene Variant Queries|
-| - Authorization   |    | - User Management |    | - Data Processing     |
-| - User Profile    |    | - Reporting       |    |                       |
-| - User Actions    |    | - Data Maintenance|    |                       |
-+-------------------+    +-------------------+    +-------------------+
-         |                      |                       |
-         |                      |                       |
-         v                      v                       v
-+-------------------+    +-------------------+    +-------------------+
-|   Database 1      |    |   Database 2      |    |   Database 3      |
-|   (User Data)     |    |   (Admin Data)    |    |   (Gene Variant)  |
-|                   |    |                   |    |                   |
-| - User Profiles   |    | - Admin Records   |    | - Gene Variant Data|
-| - User Actions    |    | - Admin Actions   |    | - Data History    |
-| - User Preferences|    |                   |    | - Gene Records    |
-+-------------------+    +-------------------+    +-------------------+
+  subgraph Frontend
+    style frontendStyle fill:#f9f,stroke:#333,stroke-width:2px;
+    UI[User Interface]
+  end
+
+  subgraph APIGateway
+    style apiGatewayStyle fill:#f9f,stroke:#333,stroke-width:2px;
+    RESTAPI[REST API]
+  end
+
+  subgraph UserService
+    style userServiceStyle fill:#f9f,stroke:#333,stroke-width:2px;
+    Users[Manages Users]
+    Auth[Authentication]
+    Authz[Authorization]
+    Profile[User Profile]
+    Actions[User Actions]
+  end
+
+  subgraph AdminService
+    style adminServiceStyle fill:#f9f,stroke:#333,stroke-width:2px;
+    AdminOps[Admin Operations]
+    AuthAdmin[Authentication]
+    UserMgmt[User Management]
+    Reporting[Reporting]
+    DataMaintenance[Data Maintenance]
+  end
+
+  subgraph GeneVariantService
+    style geneServiceStyle fill:#f9f,stroke:#333,stroke-width:2px;
+    GeneData[Gene Variant Data]
+    Queries[Gene Variant Queries]
+    DataProcessing[Data Processing]
+  end
+
+  subgraph Database1
+    style dbStyle fill:#f9f,stroke:#333,stroke-width:2px;
+    UserProfiles[User Profiles]
+    UserActions[User Actions]
+    UserPrefs[User Preferences]
+  end
+
+  subgraph Database2
+    style dbStyle fill:#f9f,stroke:#333,stroke-width:2px;
+    AdminRecords[Admin Records]
+    AdminActions[Admin Actions]
+  end
+
+  subgraph Database3
+    style dbStyle fill:#f9f,stroke:#333,stroke-width:2px;
+    GeneVariantData[Gene Variant Data]
+    DataHistory[Data History]
+    GeneRecords[Gene Records]
+  end
+
+  UI --> RESTAPI
+  RESTAPI --> Users
+  RESTAPI --> AdminOps
+  RESTAPI --> GeneData
+  Users --> UserProfiles
+  Users --> Auth
+  Users --> Authz
+  Users --> Profile
+  Users --> Actions
+  AdminOps --> AuthAdmin
+  AdminOps --> UserMgmt
+  AdminOps --> Reporting
+  AdminOps --> DataMaintenance
+  GeneData --> Queries
+  GeneData --> DataProcessing
+  UserProfiles --> Database1
+  UserActions --> Database1
+  UserPrefs --> Database1
+  AdminRecords --> Database2
+  AdminActions --> Database2
+  GeneVariantData --> Database3
+  DataHistory --> Database3
+  GeneRecords --> Database3
+
 
 ## 2. Prerequisites
 Before using **rdsctl**, ensure you have the following prerequisites:
