@@ -40,7 +40,8 @@ You can click on each link to access the corresponding documentation.
 
 Feel free to explore the documentation to learn more about this project.
 
-##REST DataHub Studio Architecture 
+## REST DataHub Studio Architecture 
+
 ```mermaid
 graph TD;
 
@@ -122,7 +123,7 @@ graph TD;
   GeneVariantData --> Database3
   DataHistory --> Database3
   GeneRecords --> Database3
-
+```
 
 ## 2. Prerequisites
 Before using **rdsctl**, ensure you have the following prerequisites:
