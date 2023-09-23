@@ -5,7 +5,7 @@
 2. [Prerequisites](#2-prerequisites)
 3. [Installation](#3-installation)
 4. [Command Line Usage](#4-command-line-usage)
-   4.1. [up - Start Docker Compose Services](#41-up---start-docker-compose-services)
+   4.1. [up  Start Docker Compose Services](#41-up---start-docker-compose-services)
    4.2. [build - Build Docker Compose Services](#42-build---build-docker-compose-services)
    4.3. [down - Stop Docker Compose Services](#43-down---stop-docker-compose-services)
    4.4. [logs - View Docker Compose Logs](#44-logs---view-docker-compose-logs)
