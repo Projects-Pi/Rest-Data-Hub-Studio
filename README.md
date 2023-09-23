@@ -9,15 +9,15 @@
 4.2. [build - Build Docker Compose Services](#42-build---build-docker-compose-services)
 4.3. [down - Stop Docker Compose Services](#43-down---stop-docker-compose-services)
 4.4. [logs - View Docker Compose Logs](#44-logs---view-docker-compose-logs)
-5. [Examples](#5-examples)
+6. [Examples](#5-examples)
 5.1. [Starting Services](#51-starting-services)
 5.2. [Building Services](#52-building-services)
 5.3. [Stopping Services](#53-stopping-services)
 5.4. [Viewing Logs](#54-viewing-logs)
-6. [Troubleshooting](#6-troubleshooting)
-7. [Frequently Asked Questions (FAQ)](#7-frequently-asked-questions-faq)
-8. [Contact Information](#8-contact-information)
-9. [License](#9-license)
+7. [Troubleshooting](#6-troubleshooting)
+8. [Frequently Asked Questions (FAQ)](#7-frequently-asked-questions-faq)
+9. [Contact Information](#8-contact-information)
+10. [License](#9-license)
 
 ## 1. Introduction
 The rdsctl tool is a command-line utility for managing Docker Compose services within different flows of the REST DataHub Studio project.
