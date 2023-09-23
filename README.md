@@ -212,8 +212,6 @@ For any further assistance or inquiries, please contact our support team at [sup
 - Contributions to this project are welcomed and must adhere to the terms of this license.
 
 This software is provided "as is," without warranty of any kind, express or implied.
-
 By using or contributing to this software, you agree to abide by the terms of this license.
 
 For more details, see the LICENSE file in this repository.
-```
