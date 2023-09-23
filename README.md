@@ -43,8 +43,6 @@ Feel free to explore the documentation to learn more about this project.
 ## REST DataHub Studio Architecture 
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '16px' }}}%%
-
 flowchart TD;
 
   subgraph Frontend
@@ -120,8 +118,6 @@ flowchart TD;
   FeatureData --> ReadFeature[GET /feature/:id]
   FeatureData --> UpdateFeature[PUT /feature/:id]
   FeatureData --> DeleteFeature[DELETE /feature/:id]
-
-
 
 ```
 
