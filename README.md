@@ -43,59 +43,79 @@ Feel free to explore the documentation to learn more about this project.
 ## REST DataHub Studio Architecture 
 
 ```mermaid
-flowchart TD;
+graph TD;
 
   subgraph Frontend
-    style frontendStyle fill:#f9f,stroke:#333,stroke-width:2px;
     UI[User Interface]
   end
 
   subgraph APIGateway
-    style apiGatewayStyle fill:#f9f,stroke:#333,stroke-width:2px;
     RESTAPI[REST API]
   end
 
   subgraph UserService
-    style userServiceStyle fill:#f9f,stroke:#333,stroke-width:2px;
     Users[Manages Users]
     Auth[Authentication]
     Authz[Authorization]
     Profile[User Profile]
     Actions[User Actions]
+
+    CreateUser[POST /user/register]
+    UserLogin[POST /user/login]
+    GetUserByID[GET /user/:id]
+    ListAllUsers[GET /user]
+    UpdateUser[PUT /user/:id]
+    DeleteUser[DELETE /user/:id]
   end
 
   subgraph AdminService
-    style adminServiceStyle fill:#f9f,stroke:#333,stroke-width:2px;
     AdminOps[Admin Operations]
     AuthAdmin[Authentication]
     UserMgmt[User Management]
     Reporting[Reporting]
     DataMaintenance[Data Maintenance]
+
+    AdminRegister[POST /admin/register]
+    AssignRole[POST /admin/assign_role]
+    UpdateAdmin[PUT /admin/update/<int:id>]
+    DeleteAdmin[DELETE /admin/delete/<int:id>]
+    ListAdmins[GET /admin/list_admins]
+    ListUsers[GET /admin/list_users]
+    ApproveUser[POST /admin/approve_user/<int:user_id>]
+    RevokeUser[POST /admin/revoke_user/<int:user_id>]
   end
 
   subgraph GeneVariantService
-    style geneServiceStyle fill:#f9f,stroke:#333,stroke-width:2px;
     GeneData[Gene Variant Data]
     Queries[Gene Variant Queries]
     DataProcessing[Data Processing]
-    subgraph Databases
-      style dbStyle fill:#f9f,stroke:#333,stroke-width:2px;
-      GeneVariantData[Gene Variant Data]
-      DataHistory[Data History]
-      GeneRecords[Gene Records]
-    end
-    subgraph FeatureService
-      style featureServiceStyle fill:#f9f,stroke:#333,stroke-width:2px;
-      FeatureData[Feature Data]
-      FeatureQueries[Feature Queries]
-      FeatureProcessing[Feature Processing]
 
-      % CRUD routes for the Feature API
-      CreateFeature[Create Feature]
-      ReadFeature[Read Feature]
-      UpdateFeature[Update Feature]
-      DeleteFeature[Delete Feature]
-    end
+    CreateGene[POST /genes]
+    ListAllGenes[GET /genes]
+    GetGeneByID[GET /genes/:geneId]
+    UpdateGeneByID[PUT /genes/:geneId]
+    DeleteGeneByID[DELETE /genes/:geneId]
+
+    GrantPermission[POST /genes/grant_permission]
+    RevokePermission[POST /genes/revoke_permission]
+    ListPermissions[GET /genes/list_permissions]
+  end
+
+  subgraph MONGO DB Database
+    GeneVariantData[Gene Variant Data]
+    DataHistory[Data History]
+    GeneRecords[Gene Records]
+  end
+
+  subgraph FeatureService
+    FeatureData[Feature Data]
+    FeatureQueries[Feature Queries]
+    FeatureProcessing[Feature Processing]
+
+    CreateFeature[POST /feature/create]
+    ReadFeature[GET /feature/:id]
+    UpdateFeature[PUT /feature/:id]
+    DeleteFeature[DELETE /feature/:id]
   end
 
   UI --> RESTAPI
@@ -112,12 +132,13 @@ flowchart TD;
   AdminOps --> DataMaintenance
   GeneData --> Queries
   GeneData --> DataProcessing
+  GeneData --> GrantPermission
+  GeneData --> RevokePermission
+  GeneData --> ListPermissions
+  FeatureService --> FeatureData
+  FeatureService --> FeatureQueries
+  FeatureService --> FeatureProcessing
 
-  % CRUD operations for the Feature
-  FeatureData --> CreateFeature[POST /feature/create]
-  FeatureData --> ReadFeature[GET /feature/:id]
-  FeatureData --> UpdateFeature[PUT /feature/:id]
-  FeatureData --> DeleteFeature[DELETE /feature/:id]
 
 ```
 
