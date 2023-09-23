@@ -43,7 +43,9 @@ Feel free to explore the documentation to learn more about this project.
 ## REST DataHub Studio Architecture 
 
 ```mermaid
-graph TD;
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '16px' }}}%%
+
+flowchart TD;
 
   subgraph Frontend
     style frontendStyle fill:#f9f,stroke:#333,stroke-width:2px;
@@ -118,6 +120,7 @@ graph TD;
   FeatureData --> ReadFeature[GET /feature/:id]
   FeatureData --> UpdateFeature[PUT /feature/:id]
   FeatureData --> DeleteFeature[DELETE /feature/:id]
+
 
 
 ```
