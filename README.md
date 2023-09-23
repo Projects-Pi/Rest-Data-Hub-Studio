@@ -189,9 +189,7 @@ If you encounter any issues or errors while using **rdsctl**, please refer to th
 - **Q:** How do I install Docker Compose?
   - **A:** You can install Docker Compose by following the instructions provided on the official Docker documentation.
 
--
-
- **Q:** I'm getting an error when running **rdsctl**. What should I do?
+- **Q:** I'm getting an error when running **rdsctl**. What should I do?
   - **A:** Ensure that you have met all the prerequisites mentioned in the [Prerequisites](#2-prerequisites) section. If the issue persists, consult the troubleshooting section (Section 6) or contact our support team.
 
 ## 8. Contact Information
