@@ -62,7 +62,6 @@ graph TD;
     Authz[Authorization]
     Profile[User Profile]
     Actions[User Actions]
-    Notifications[Notifications]
   end
 
   subgraph AdminService
@@ -72,7 +71,6 @@ graph TD;
     UserMgmt[User Management]
     Reporting[Reporting]
     DataMaintenance[Data Maintenance]
-    Notifications[Notifications]
   end
 
   subgraph GeneVariantService
@@ -86,7 +84,18 @@ graph TD;
       DataHistory[Data History]
       GeneRecords[Gene Records]
     end
-    Notifications[Notifications]
+    subgraph FeatureService
+      style featureServiceStyle fill:#f9f,stroke:#333,stroke-width:2px;
+      FeatureData[Feature Data]
+      FeatureQueries[Feature Queries]
+      FeatureProcessing[Feature Processing]
+
+      % CRUD routes for the Feature API
+      CreateFeature[Create Feature]
+      ReadFeature[Read Feature]
+      UpdateFeature[Update Feature]
+      DeleteFeature[Delete Feature]
+    end
   end
 
   UI --> RESTAPI
@@ -97,15 +106,19 @@ graph TD;
   Users --> Authz
   Users --> Profile
   Users --> Actions
-  Users --> Notifications
   AdminOps --> AuthAdmin
   AdminOps --> UserMgmt
   AdminOps --> Reporting
   AdminOps --> DataMaintenance
-  AdminOps --> Notifications
   GeneData --> Queries
   GeneData --> DataProcessing
-  GeneData --> Notifications
+
+  % CRUD operations for the Feature
+  FeatureData --> CreateFeature[POST /feature/create]
+  FeatureData --> ReadFeature[GET /feature/:id]
+  FeatureData --> UpdateFeature[PUT /feature/:id]
+  FeatureData --> DeleteFeature[DELETE /feature/:id]
+
 
 ```
 
