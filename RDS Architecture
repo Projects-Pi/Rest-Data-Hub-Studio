@@ -1,0 +1,351 @@
+flowchart TD
+  subgraph Docker Compose
+    subgraph Admin Microservice
+      A[Admin Registration] --> B[Assign Role to Entity]
+      B --> C[Update Admin]
+      C --> D[Delete Admin]
+      D --> E[List Admins]
+      E --> F[Approve User]
+      F --> G[Revoke User]
+    end
+
+    subgraph User Microservice
+      H[User Registration] --> I[User Login]
+      I --> J[Get All Users]
+      J --> K[Get User by ID]
+      K --> L[Update User]
+      L --> M[Delete User]
+    end
+
+    subgraph Variant Records Microservice
+      N[Create Variant] --> O[Get All Variants]
+      O --> P[Get Variant by ID]
+      P --> Q[Update Variant by ID]
+      Q --> R[Delete Variant by ID]
+    end
+
+    subgraph Clinical Trial Microservice
+      S[Create Clinical Trial] --> T[Get All Clinical Trials]
+      T --> U[Get Clinical Trial by ID]
+      U --> V[Update Clinical Trial by ID]
+      V --> W[Delete Clinical Trial by ID]
+    end
+
+    subgraph Gene Microservice
+      X[Create Gene] --> Y[Get All Genes]
+      Y --> Z[Get Gene by ID]
+      Z --> AA[Update Gene by ID]
+      AA --> AB[Delete Gene by ID]
+    end
+
+    subgraph Lab Microservice
+      AC[Create Lab] --> AD[Get All Labs]
+      AD --> AE[Get Lab by ID]
+      AE --> AF[Update Lab by ID]
+      AF --> AG[Delete Lab by ID]
+    end
+
+    subgraph Medical History Microservice
+      AH[Create Medical History] --> AI[Get All Medical Histories]
+      AI --> AJ[Get Medical History by ID]
+      AJ --> AK[Update Medical History by ID]
+      AK --> AL[Delete Medical History by ID]
+    end
+
+    subgraph Patient Microservice
+      AM[Create Patient] --> AN[Get All Patients]
+      AN --> AO[Get Patient by ID]
+      AO --> AP[Update Patient by ID]
+      AP --> AQ[Delete Patient by ID]
+    end
+
+    subgraph Researcher Microservice
+      AR[Create Researcher] --> AS[Get All Researchers]
+      AS --> AT[Get Researcher by ID]
+      AT --> AU[Update Researcher by ID]
+      AU --> AV[Delete Researcher by ID]
+    end
+
+    subgraph Gateway
+      AW[API Gateway]
+    end
+
+    A --> AW
+    B --> AW
+    C --> AW
+    D --> AW
+    E --> AW
+    F --> AW
+    G --> AW
+    H --> AW
+    I --> AW
+    J --> AW
+    K --> AW
+    L --> AW
+    M --> AW
+    N --> AW
+    O --> AW
+    P --> AW
+    Q --> AW
+    R --> AW
+    S --> AW
+    T --> AW
+    U --> AW
+    V --> AW
+    W --> AW
+    X --> AW
+    Y --> AW
+    Z --> AW
+    AA --> AW
+    AB --> AW
+    AC --> AW
+    AD --> AW
+    AE --> AW
+    AF --> AW
+    AG --> AW
+    AH --> AW
+    AI --> AW
+    AJ --> AW
+    AK --> AW
+    AL --> AW
+    AM --> AW
+    AN --> AW
+    AO --> AW
+    AP --> AW
+    AQ --> AW
+    AR --> AW
+    AS --> AW
+    AT --> AW
+    AU --> AW
+    AV --> AW
+  end
+
+
+
+
+
+
+
+
+Full Architecture
+
+flowchart TD
+  subgraph DockerCompose
+    subgraph AdminMicroservice
+      AdminRegistration --> AssignRoleToEntity
+      AssignRoleToEntity --> UpdateAdmin
+      UpdateAdmin --> DeleteAdmin
+      DeleteAdmin --> ListAdmins
+      ListAdmins --> ApproveUser
+      ApproveUser --> RevokeUser
+    end
+
+    subgraph UserMicroservice
+      UserRegistration --> UserLogin
+      UserLogin --> GetAllUsers
+      GetAllUsers --> GetUserByID
+      GetUserByID --> UpdateUser
+      UpdateUser --> DeleteUser
+    end
+
+    subgraph VariantRecordsMicroservice
+      CreateVariant --> GetAllVariants
+      GetAllVariants --> GetVariantByID
+      GetVariantByID --> UpdateVariantByID
+      UpdateVariantByID --> DeleteVariantByID
+    end
+
+    subgraph ClinicalTrialMicroservice
+      CreateClinicalTrial --> GetAllClinicalTrials
+      GetAllClinicalTrials --> GetClinicalTrialByID
+      GetClinicalTrialByID --> UpdateClinicalTrialByID
+      UpdateClinicalTrialByID --> DeleteClinicalTrialByID
+    end
+
+    subgraph GeneMicroservice
+      CreateGene --> GetAllGenes
+      GetAllGenes --> GetGeneByID
+      GetGeneByID --> UpdateGeneByID
+      UpdateGeneByID --> DeleteGeneByID
+    end
+
+    subgraph LabMicroservice
+      CreateLab --> GetAllLabs
+      GetAllLabs --> GetLabByID
+      GetLabByID --> UpdateLabByID
+      UpdateLabByID --> DeleteLabByID
+    end
+
+    subgraph MedicalHistoryMicroservice
+      CreateMedicalHistory --> GetAllMedicalHistories
+      GetAllMedicalHistories --> GetMedicalHistoryByID
+      GetMedicalHistoryByID --> UpdateMedicalHistoryByID
+      UpdateMedicalHistoryByID --> DeleteMedicalHistoryByID
+    end
+
+    subgraph PatientMicroservice
+      CreatePatient --> GetAllPatients
+      GetAllPatients --> GetPatientByID
+      GetPatientByID --> UpdatePatientByID
+      UpdatePatientByID --> DeletePatientByID
+    end
+
+    subgraph ResearcherMicroservice
+      CreateResearcher --> GetAllResearchers
+      GetAllResearchers --> GetResearcherByID
+      GetResearcherByID --> UpdateResearcherByID
+      UpdateResearcherByID --> DeleteResearcherByID
+    end
+
+    subgraph Gateway
+      APIGateway
+    end
+
+    AdminRegistration --> APIGateway
+    AssignRoleToEntity --> APIGateway
+    UpdateAdmin --> APIGateway
+    DeleteAdmin --> APIGateway
+    ListAdmins --> APIGateway
+    ApproveUser --> APIGateway
+    RevokeUser --> APIGateway
+    UserRegistration --> APIGateway
+    UserLogin --> APIGateway
+    GetAllUsers --> APIGateway
+    GetUserByID --> APIGateway
+    UpdateUser --> APIGateway
+    DeleteUser --> APIGateway
+    CreateVariant --> APIGateway
+    GetAllVariants --> APIGateway
+    GetVariantByID --> APIGateway
+    UpdateVariantByID --> APIGateway
+    DeleteVariantByID --> APIGateway
+    CreateClinicalTrial --> APIGateway
+    GetAllClinicalTrials --> APIGateway
+    GetClinicalTrialByID --> APIGateway
+    UpdateClinicalTrialByID --> APIGateway
+    DeleteClinicalTrialByID --> APIGateway
+    CreateGene --> APIGateway
+    GetAllGenes --> APIGateway
+    GetGeneByID --> APIGateway
+    UpdateGeneByID --> APIGateway
+    DeleteGeneByID --> APIGateway
+    CreateLab --> APIGateway
+    GetAllLabs --> APIGateway
+    GetLabByID --> APIGateway
+    UpdateLabByID --> APIGateway
+    DeleteLabByID --> APIGateway
+    CreateMedicalHistory --> APIGateway
+    GetAllMedicalHistories --> APIGateway
+    GetMedicalHistoryByID --> APIGateway
+    UpdateMedicalHistoryByID --> APIGateway
+    DeleteMedicalHistoryByID --> APIGateway
+    CreatePatient --> APIGateway
+    GetAllPatients --> APIGateway
+    GetPatientByID --> APIGateway
+    UpdatePatientByID --> APIGateway
+    DeletePatientByID --> APIGateway
+    CreateResearcher --> APIGateway
+    GetAllResearchers --> APIGateway
+    GetResearcherByID --> APIGateway
+    UpdateResearcherByID --> APIGateway
+    DeleteResearcherByID --> APIGateway
+  end
+
+  subgraph Roles
+    subgraph Superadmin
+      FullControlOverUserAndAdminManagement --> ManageRolesAndPermissions
+      ManageRolesAndPermissions --> AccessSystemWideConfigurations
+      AccessSystemWideConfigurations --> ManagePharmaceuticalData
+      AccessSystemWideConfigurations --> ManageClinicalData
+      AccessSystemWideConfigurations --> ManageGeneData
+      AccessSystemWideConfigurations --> ManageAdverseEventsData
+      AccessSystemWideConfigurations --> ManageVariantsData
+      AccessSystemWideConfigurations --> ManageMedicalData
+    end
+
+    subgraph Admin
+      ManageUserAccounts --> AssignRolesAndPermissions
+      AssignRolesAndPermissions --> AccessAdminDashboard
+    end
+
+    subgraph PharmaceuticalDataManager
+      ManagePharmaceuticalDatasets --> ManageDataSchemasAndConfigurations
+      ManagePharmaceuticalDatasets --> AccessDataImportTools
+    end
+
+    subgraph ClinicalDataManager
+      ManageClinicalDatasets --> ManageDataSchemasAndConfigurations
+      ManageClinicalDatasets --> AccessDataImportTools
+    end
+
+    subgraph GeneDataManager
+      ManageGeneDatasets --> ManageDataSchemasAndConfigurations
+      ManageGeneDatasets --> AccessDataImportTools
+    end
+
+    subgraph AdverseEventsDataManager
+      ManageAdverseEventsDatasets --> ManageDataSchemasAndConfigurations
+      ManageAdverseEventsDatasets --> AccessDataImportTools
+    end
+
+    subgraph VariantsDataManager
+      ManageVariantsDatasets --> ManageDataSchemasAndConfigurations
+      ManageVariantsDatasets --> AccessDataImportTools
+    end
+
+    subgraph MedicalDataManager
+      ManageMedicalDatasets --> ManageDataSchemasAndConfigurations
+      ManageMedicalDatasets --> AccessDataImportTools
+    end
+
+    subgraph PharmaceuticalDepartmentUser
+      AccessPharmaceuticalData --> RetrieveAndUsePharmaceuticalData
+    end
+
+    subgraph ClinicalDepartmentUser
+      AccessClinicalData --> RetrieveAndUseClinicalData
+    end
+
+    subgraph GeneticsDepartmentUser
+      AccessGeneData --> RetrieveAndUseGeneData
+    end
+
+    subgraph SafetyDepartmentUser
+      AccessAdverseEventsData --> RetrieveAndUseAdverseEventsData
+    end
+
+    subgraph ResearchDepartmentUser
+      AccessVariantsData --> AccessMedicalData
+      AccessVariantsData --> RetrieveAndUseVariantsAndMedicalData
+    end
+  end
+
+  Superadmin --> ManageRolesAndPermissions
+  Admin --> ManageUserAccounts
+  Admin --> AssignRolesAndPermissions
+  Admin --> AccessAdminDashboard
+  PharmaceuticalDataManager --> ManagePharmaceuticalDatasets
+  PharmaceuticalDataManager --> ManageDataSchemasAndConfigurations
+  PharmaceuticalDataManager --> AccessDataImportTools
+  ClinicalDataManager --> ManageClinicalDatasets
+  ClinicalDataManager --> ManageDataSchemasAndConfigurations
+  ClinicalDataManager --> AccessDataImportTools
+  GeneDataManager --> ManageGeneDatasets
+  GeneDataManager --> ManageDataSchemasAndConfigurations
+  GeneDataManager --> AccessDataImportTools
+  AdverseEventsDataManager --> ManageAdverseEventsDatasets
+  AdverseEventsDataManager --> ManageDataSchemasAndConfigurations
+  AdverseEventsDataManager --> AccessDataImportTools
+  VariantsDataManager --> ManageVariantsDatasets
+  VariantsDataManager --> ManageDataSchemasAndConfigurations
+  VariantsDataManager --> AccessDataImportTools
+  MedicalDataManager --> ManageMedicalDatasets
+  MedicalDataManager --> ManageDataSchemasAndConfigurations
+  MedicalDataManager --> AccessDataImportTools
+  PharmaceuticalDepartmentUser --> RetrieveAndUsePharmaceuticalData
+  ClinicalDepartmentUser --> RetrieveAndUseClinicalData
+  GeneticsDepartmentUser --> RetrieveAndUseGeneData
+  SafetyDepartmentUser --> RetrieveAndUseAdverseEventsData
+  ResearchDepartmentUser --> AccessMedicalData
+  ResearchDepartmentUser --> RetrieveAndUseVariantsAndMedicalData
+
