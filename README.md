@@ -43,101 +43,226 @@ Feel free to explore the documentation to learn more about this project.
 ## REST DataHub Studio Architecture 
 
 ```mermaid
-graph TD;
+flowchart TD
+  subgraph DockerCompose
+    subgraph AdminMicroservice
+      AdminRegistration --> AssignRoleToEntity
+      AssignRoleToEntity --> UpdateAdmin
+      UpdateAdmin --> DeleteAdmin
+      DeleteAdmin --> ListAdmins
+      ListAdmins --> ApproveUser
+      ApproveUser --> RevokeUser
+    end
 
-  subgraph Frontend
-    UI[User Interface]
+    subgraph UserMicroservice
+      UserRegistration --> UserLogin
+      UserLogin --> GetAllUsers
+      GetAllUsers --> GetUserByID
+      GetUserByID --> UpdateUser
+      UpdateUser --> DeleteUser
+    end
+
+    subgraph VariantRecordsMicroservice
+      CreateVariant --> GetAllVariants
+      GetAllVariants --> GetVariantByID
+      GetVariantByID --> UpdateVariantByID
+      UpdateVariantByID --> DeleteVariantByID
+    end
+
+    subgraph ClinicalTrialMicroservice
+      CreateClinicalTrial --> GetAllClinicalTrials
+      GetAllClinicalTrials --> GetClinicalTrialByID
+      GetClinicalTrialByID --> UpdateClinicalTrialByID
+      UpdateClinicalTrialByID --> DeleteClinicalTrialByID
+    end
+
+    subgraph GeneMicroservice
+      CreateGene --> GetAllGenes
+      GetAllGenes --> GetGeneByID
+      GetGeneByID --> UpdateGeneByID
+      UpdateGeneByID --> DeleteGeneByID
+    end
+
+    subgraph LabMicroservice
+      CreateLab --> GetAllLabs
+      GetAllLabs --> GetLabByID
+      GetLabByID --> UpdateLabByID
+      UpdateLabByID --> DeleteLabByID
+    end
+
+    subgraph MedicalHistoryMicroservice
+      CreateMedicalHistory --> GetAllMedicalHistories
+      GetAllMedicalHistories --> GetMedicalHistoryByID
+      GetMedicalHistoryByID --> UpdateMedicalHistoryByID
+      UpdateMedicalHistoryByID --> DeleteMedicalHistoryByID
+    end
+
+    subgraph PatientMicroservice
+      CreatePatient --> GetAllPatients
+      GetAllPatients --> GetPatientByID
+      GetPatientByID --> UpdatePatientByID
+      UpdatePatientByID --> DeletePatientByID
+    end
+
+    subgraph ResearcherMicroservice
+      CreateResearcher --> GetAllResearchers
+      GetAllResearchers --> GetResearcherByID
+      GetResearcherByID --> UpdateResearcherByID
+      UpdateResearcherByID --> DeleteResearcherByID
+    end
+
+    subgraph Gateway
+      APIGateway
+    end
+
+    AdminRegistration --> APIGateway
+    AssignRoleToEntity --> APIGateway
+    UpdateAdmin --> APIGateway
+    DeleteAdmin --> APIGateway
+    ListAdmins --> APIGateway
+    ApproveUser --> APIGateway
+    RevokeUser --> APIGateway
+    UserRegistration --> APIGateway
+    UserLogin --> APIGateway
+    GetAllUsers --> APIGateway
+    GetUserByID --> APIGateway
+    UpdateUser --> APIGateway
+    DeleteUser --> APIGateway
+    CreateVariant --> APIGateway
+    GetAllVariants --> APIGateway
+    GetVariantByID --> APIGateway
+    UpdateVariantByID --> APIGateway
+    DeleteVariantByID --> APIGateway
+    CreateClinicalTrial --> APIGateway
+    GetAllClinicalTrials --> APIGateway
+    GetClinicalTrialByID --> APIGateway
+    UpdateClinicalTrialByID --> APIGateway
+    DeleteClinicalTrialByID --> APIGateway
+    CreateGene --> APIGateway
+    GetAllGenes --> APIGateway
+    GetGeneByID --> APIGateway
+    UpdateGeneByID --> APIGateway
+    DeleteGeneByID --> APIGateway
+    CreateLab --> APIGateway
+    GetAllLabs --> APIGateway
+    GetLabByID --> APIGateway
+    UpdateLabByID --> APIGateway
+    DeleteLabByID --> APIGateway
+    CreateMedicalHistory --> APIGateway
+    GetAllMedicalHistories --> APIGateway
+    GetMedicalHistoryByID --> APIGateway
+    UpdateMedicalHistoryByID --> APIGateway
+    DeleteMedicalHistoryByID --> APIGateway
+    CreatePatient --> APIGateway
+    GetAllPatients --> APIGateway
+    GetPatientByID --> APIGateway
+    UpdatePatientByID --> APIGateway
+    DeletePatientByID --> APIGateway
+    CreateResearcher --> APIGateway
+    GetAllResearchers --> APIGateway
+    GetResearcherByID --> APIGateway
+    UpdateResearcherByID --> APIGateway
+    DeleteResearcherByID --> APIGateway
   end
 
-  subgraph APIGateway
-    RESTAPI[REST API]
+  subgraph Roles
+    subgraph Superadmin
+      FullControlOverUserAndAdminManagement --> ManageRolesAndPermissions
+      ManageRolesAndPermissions --> AccessSystemWideConfigurations
+      AccessSystemWideConfigurations --> ManagePharmaceuticalData
+      AccessSystemWideConfigurations --> ManageClinicalData
+      AccessSystemWideConfigurations --> ManageGeneData
+      AccessSystemWideConfigurations --> ManageAdverseEventsData
+      AccessSystemWideConfigurations --> ManageVariantsData
+      AccessSystemWideConfigurations --> ManageMedicalData
+    end
+
+    subgraph Admin
+      ManageUserAccounts --> AssignRolesAndPermissions
+      AssignRolesAndPermissions --> AccessAdminDashboard
+    end
+
+    subgraph PharmaceuticalDataManager
+      ManagePharmaceuticalDatasets --> ManageDataSchemasAndConfigurations
+      ManagePharmaceuticalDatasets --> AccessDataImportTools
+    end
+
+    subgraph ClinicalDataManager
+      ManageClinicalDatasets --> ManageDataSchemasAndConfigurations
+      ManageClinicalDatasets --> AccessDataImportTools
+    end
+
+    subgraph GeneDataManager
+      ManageGeneDatasets --> ManageDataSchemasAndConfigurations
+      ManageGeneDatasets --> AccessDataImportTools
+    end
+
+    subgraph AdverseEventsDataManager
+      ManageAdverseEventsDatasets --> ManageDataSchemasAndConfigurations
+      ManageAdverseEventsDatasets --> AccessDataImportTools
+    end
+
+    subgraph VariantsDataManager
+      ManageVariantsDatasets --> ManageDataSchemasAndConfigurations
+      ManageVariantsDatasets --> AccessDataImportTools
+    end
+
+    subgraph MedicalDataManager
+      ManageMedicalDatasets --> ManageDataSchemasAndConfigurations
+      ManageMedicalDatasets --> AccessDataImportTools
+    end
+
+    subgraph PharmaceuticalDepartmentUser
+      AccessPharmaceuticalData --> RetrieveAndUsePharmaceuticalData
+    end
+
+    subgraph ClinicalDepartmentUser
+      AccessClinicalData --> RetrieveAndUseClinicalData
+    end
+
+    subgraph GeneticsDepartmentUser
+      AccessGeneData --> RetrieveAndUseGeneData
+    end
+
+    subgraph SafetyDepartmentUser
+      AccessAdverseEventsData --> RetrieveAndUseAdverseEventsData
+    end
+
+    subgraph ResearchDepartmentUser
+      AccessVariantsData --> AccessMedicalData
+      AccessVariantsData --> RetrieveAndUseVariantsAndMedicalData
+    end
   end
 
-  subgraph UserService
-    Users[Manages Users]
-    Auth[Authentication]
-    Authz[Authorization]
-    Profile[User Profile]
-    Actions[User Actions]
+  Superadmin --> ManageRolesAndPermissions
+  Admin --> ManageUserAccounts
+  Admin --> AssignRolesAndPermissions
+  Admin --> AccessAdminDashboard
+  PharmaceuticalDataManager --> ManagePharmaceuticalDatasets
+  PharmaceuticalDataManager --> ManageDataSchemasAndConfigurations
+  PharmaceuticalDataManager --> AccessDataImportTools
+  ClinicalDataManager --> ManageClinicalDatasets
+  ClinicalDataManager --> ManageDataSchemasAndConfigurations
+  ClinicalDataManager --> AccessDataImportTools
+  GeneDataManager --> ManageGeneDatasets
+  GeneDataManager --> ManageDataSchemasAndConfigurations
+  GeneDataManager --> AccessDataImportTools
+  AdverseEventsDataManager --> ManageAdverseEventsDatasets
+  AdverseEventsDataManager --> ManageDataSchemasAndConfigurations
+  AdverseEventsDataManager --> AccessDataImportTools
+  VariantsDataManager --> ManageVariantsDatasets
+  VariantsDataManager --> ManageDataSchemasAndConfigurations
+  VariantsDataManager --> AccessDataImportTools
+  MedicalDataManager --> ManageMedicalDatasets
+  MedicalDataManager --> ManageDataSchemasAndConfigurations
+  MedicalDataManager --> AccessDataImportTools
+  PharmaceuticalDepartmentUser --> RetrieveAndUsePharmaceuticalData
+  ClinicalDepartmentUser --> RetrieveAndUseClinicalData
+  GeneticsDepartmentUser --> RetrieveAndUseGeneData
+  SafetyDepartmentUser --> RetrieveAndUseAdverseEventsData
+  ResearchDepartmentUser --> AccessMedicalData
+  ResearchDepartmentUser --> RetrieveAndUseVariantsAndMedicalData
 
-    CreateUser[POST /user/register]
-    UserLogin[POST /user/login]
-    GetUserByID[GET /user/:id]
-    ListAllUsers[GET /user]
-    UpdateUser[PUT /user/:id]
-    DeleteUser[DELETE /user/:id]
-  end
-
-  subgraph AdminService
-    AdminOps[Admin Operations]
-    AuthAdmin[Authentication]
-    UserMgmt[User Management]
-    Reporting[Reporting]
-    DataMaintenance[Data Maintenance]
-
-    AdminRegister[POST /admin/register]
-    AssignRole[POST /admin/assign_role]
-    UpdateAdmin[PUT /admin/update/<int:id>]
-    DeleteAdmin[DELETE /admin/delete/<int:id>]
-    ListAdmins[GET /admin/list_admins]
-    ListUsers[GET /admin/list_users]
-    ApproveUser[POST /admin/approve_user/<int:user_id>]
-    RevokeUser[POST /admin/revoke_user/<int:user_id>]
-  end
-
-  subgraph GeneVariantService
-    GeneData[Gene Variant Data]
-    Queries[Gene Variant Queries]
-    DataProcessing[Data Processing]
-
-    CreateGene[POST /genes]
-    ListAllGenes[GET /genes]
-    GetGeneByID[GET /genes/:geneId]
-    UpdateGeneByID[PUT /genes/:geneId]
-    DeleteGeneByID[DELETE /genes/:geneId]
-
-    GrantPermission[POST /genes/grant_permission]
-    RevokePermission[POST /genes/revoke_permission]
-    ListPermissions[GET /genes/list_permissions]
-  end
-
-  subgraph MONGO DB Database
-    GeneVariantData[Gene Variant Data]
-    DataHistory[Data History]
-    GeneRecords[Gene Records]
-  end
-
-  subgraph FeatureService
-    FeatureData[Feature Data]
-    FeatureQueries[Feature Queries]
-    FeatureProcessing[Feature Processing]
-
-    CreateFeature[POST /feature/create]
-    ReadFeature[GET /feature/:id]
-    UpdateFeature[PUT /feature/:id]
-    DeleteFeature[DELETE /feature/:id]
-  end
-
-  UI --> RESTAPI
-  RESTAPI --> Users
-  RESTAPI --> AdminOps
-  RESTAPI --> GeneData
-  Users --> Auth
-  Users --> Authz
-  Users --> Profile
-  Users --> Actions
-  AdminOps --> AuthAdmin
-  AdminOps --> UserMgmt
-  AdminOps --> Reporting
-  AdminOps --> DataMaintenance
-  GeneData --> Queries
-  GeneData --> DataProcessing
-  GeneData --> GrantPermission
-  GeneData --> RevokePermission
-  GeneData --> ListPermissions
-  FeatureService --> FeatureData
-  FeatureService --> FeatureQueries
-  FeatureService --> FeatureProcessing
 
 
 ```
